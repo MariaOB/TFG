@@ -1,0 +1,282 @@
+\documentclass[a4paper,11pt]{book}
+%\documentclass[a4paper,twoside,11pt,titlepage]{book}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{subfig}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{amsthm}
+\usepackage{graphicx} % figuras
+\usepackage{subfigure} % subfiguras
+
+% \usepackage[style=list, number=none]{glossary} %
+%\usepackage{titlesec}
+%\usepackage{pailatino}
+
+\decimalpoint
+\usepackage{dcolumn}
+\newcolumntype{.}{D{.}{\esperiod}{-1}}
+\makeatletter
+\addto\shorthandsspanish{\let\esperiod\es@period@code}
+\makeatother
+
+
+%\usepackage[chapter]{algorithm}
+\RequirePackage{verbatim}
+%\RequirePackage[Glenn]{fncychap}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{longtable}
+\usepackage{minted}
+\usepackage{bbding}
+
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\usepackage[pdfborder={000}]{hyperref} %referencia
+
+% ********************************************************************
+% Re-usable information
+% ********************************************************************
+\newcommand{\myTitle}{Voronoi-Diagrams \xspace}
+\newcommand{\myDegree}{Doble Grado en Ingeniería Informática y Matemáticas \xspace}
+\newcommand{\myName}{María Oliver Balsalobre \xspace}
+\newcommand{\myProf}{Daniel Sánchez Fernández \xspace}
+\newcommand{\myFaculty}{Facultad de Ciencias \xspace}
+\newcommand{\myFacultyShort}{F. Ciencias \xspace}
+\newcommand{\myDepartment}{Departamento de ... \xspace}
+\newcommand{\myUni}{\protect{Universidad de Granada} \xspace}
+\newcommand{\myLocation}{Granada \xspace}
+\newcommand{\myTime}{\today \xspace}
+\newcommand{\myVersion}{Version 0.1 \xspace}
+
+
+\hypersetup{
+pdfauthor = {\myName (mariaob (en) ugr (punto) es)},
+pdftitle = {\myTitle},
+pdfsubject = {},
+pdfkeywords = {palabraclave1, palabraclave2, palabraclave3, ...},
+pdfcreator = {LaTeX con el paquete ....},
+pdfproducer = {pdflatex}
+}
+
+\hyphenation{}
+
+
+%\usepackage{doxygen/doxygen}
+%\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{colortbl,longtable}
+\usepackage[stable]{footmisc}
+%\usepackage{index}
+
+%\makeindex
+%\usepackage[style=long, cols=2,border=plain,toc=true,number=none]{glossary}
+% \makeglossary
+
+% Definición de comandos que me son útiles:
+%\renewcommand{\indexname}{Índice alfabético}
+%\renewcommand{\glossaryname}{Glosario}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+\fancyhead[RO,LE]{\textbf{\thepage}}
+\renewcommand{\chaptermark}[1]{\markboth{\textbf{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textbf{\thesection. #1}}}
+
+\setlength{\headheight}{1.5\headheight}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%Definimos los tipos teorema, ejemplo y definición podremos usar estos tipos
+%simplemente poniendo \begin{teorema} \end{teorema} ...
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{proposicion}{Proposición}[chapter]
+\newtheorem{corolario}{Corolario}[chapter]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{ejemplo}{Ejemplo}[chapter]
+\newtheorem{definicion}{Definición}[chapter]
+
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+\definecolor{gray30}{gray}{.94}
+
+\lstset{ frame=Ltb,
+     framerule=0.5pt,
+     aboveskip=0.5cm,
+     framextopmargin=3pt,
+     framexbottommargin=3pt,
+     framexleftmargin=0.1cm,
+     framesep=0pt,
+     rulesep=.4pt,
+     backgroundcolor=\color{gray97},
+     rulesepcolor=\color{black},
+     %
+     stringstyle=\ttfamily,
+     showstringspaces = false,
+     basicstyle=\scriptsize\ttfamily,
+     commentstyle=\color{gray45},
+     keywordstyle=\bfseries,
+     %
+     numbers=left,
+     numbersep=6pt,
+     numberstyle=\tiny,
+     numberfirstline = false,
+     breaklines=true,
+   }
+ 
+% minimizar fragmentado de listados
+%\lstnewenvironment{listing}[1][]
+%   {\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\lstdefinestyle{CodigoC}
+   {
+	basicstyle=\scriptsize,
+	frame=single,
+	language=C,
+	numbers=left
+   }
+\lstdefinestyle{CodigoC++}
+   {
+	basicstyle=\small,
+	frame=single,
+	backgroundcolor=\color{gray30},
+	language=C++,
+	numbers=left
+   }
+
+ 
+\lstdefinestyle{Consola}
+   {basicstyle=\scriptsize\bf\ttfamily,
+    backgroundcolor=\color{gray30},
+    frame=single,
+    numbers=none
+   }
+
+
+\newcommand{\bigrule}{\titlerule[0.5mm]}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize,
+	breaklines=true,
+	captionpos=b,
+	commentstyle=\color{mygreen},
+	escapeinside={\%*}{*)},
+	keywordstyle=\color{blue},
+	stringstyle=\color{mymauve},
+	tabsize=2
+}
+
+%Para conseguir que en las páginas en blanco no ponga cabecerass
+\makeatletter
+\def\clearpage{%
+  \ifvmode
+    \ifnum \@dbltopnum =\m@ne
+      \ifdim \pagetotal <\topskip
+        \hbox{}
+      \fi
+    \fi
+  \fi
+  \newpage
+  \thispagestyle{empty}
+  \write\m@ne{}
+  \vbox{}
+  \penalty -\@Mi
+}
+\makeatother
+
+\usepackage{pdfpages}
+\raggedbottom
+\begin{document}
+\input{portada/portada}
+
+\tableofcontents
+\listoffigures
+\renewcommand\listfigurename{\centering Índice de Figuras}
+
+\input{prefacios/prefacio}
+
+\input{capitulos/01_Introduccion}
+
+\input{capitulos/02_Objetivos}
+
+\input{capitulos/03_Desarrollo}
+
+\input{capitulos/04_Conclusiones}
+
+\begin{thebibliography}{1}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+\bibitem{clo} Franz Aurenhammer, Rolf Klein y Der-Tsai Lee, \emph{Voronoi Diagrams and delaunay Triangulations}, World Scientific, 2013.
+
+\bibitem{qhull} Qhull, \emph{Voronoi Diagram}.  \url{http://www.qhull.org/html/qvoronoi.htm},  \url{http://www.qhull.org/html/qdelaun.htm}
+
+\bibitem{java} Java™ Platform, Standard Edition 7
+API Specification \url{https://docs.oracle.com/javase/7/docs/api/}.
+
+\bibitem{java2} Programming Tutorials and Source Code Examples. \url{http://www.java2s.com/}
+
+\bibitem{python} Python™. The Python Programming Language.
+\url{https://www.python.org/}
+
+\bibitem{pythonclass} SciPy: Fundamental Python library for scientific computing. Last updated on Mar 09, 2017.
+\url{https://scipy.org/scipylib/index.html}
+
+\bibitem{fotosfortune} Binay Bhattacharya. \emph{Notes from the book by de Berg, Van Krevald, Overmars, and Schwarzkpf. Fortune’s Algorithm}, 2011.
+\url{http://www.cs.sfu.ca/~binay/813.2011/Fortune.pdf}
+
+\bibitem{seidel} R. Seidel. \emph{Small-dimensional lineal programming and convex hulls made easy}. Discrete \& Computational Geometry 6, 1991.
+
+\bibitem{yap} C.K. Yap. \emph{Fundamental Problems of Algorithmic Algebra}. Oxford University Press, 2000.
+
+\bibitem{fotosincremental} Claudia Esteves Jaramillo, Johan Van Horebeek, Alonso Ramírez Manzanares. \emph{Curso de Análisis de Algoritmos}. Geometría Computacional, Diagramas de Voronoi. 2013. \url{http://www.cimat.mx/~alram/analisis_algo/07_DiagramasVoronoi.pdf}
+
+\bibitem{fotosdividevenceras} Geometría Computacional. Ingeniería Informática e Ingeniería Técnica de Gestión. Diagramas de Voronoi, 2000-2001. \url{http://asignatura.us.es/fgcitig/contenidos/gctem3ma.htm}
+
+\bibitem{gardenfor} Peter Gärdenfors. \emph{Conceptual Spaces. The Geometry of Thought}. MIT Press, 2004.
+
+\bibitem{b-w} Bowyer-Watson algorithm, última edición en Marzo de 2017 \url{https://en.wikipedia.org/wiki/Bowyer%E2%80%93Watson_algorithm}
+
+\bibitem{schspen} D.Schmitt and J.-C. Spehner. \emph{Angular properties of Delaunay diagrams in any dimensions.} Discrete \& Computational Geometry 5, 2000, 17-36.
+
+\bibitem{mys} K. Mehlhorn and S. Näher. \emph{LEDA: A Platform for Combinatorial and Geometric Computing.} Cambridge University Press, 1999.
+
+\bibitem{dewvran} A.K. Dewdney and J.K. Vranckh. \emph{A convex partition of $R^3$ with applications to Crum's problem and Knuth's post-office problem}. Utilitas Mathematica 12, 1977, 193-199.
+
+\bibitem{joe} B. Joe. Geompack. \emph{A software package for the generation of meshes using geometric algorithms}. Advances in Engineering Software and Workstations 13, 1991, 325-331.
+
+\bibitem{edersei} H. Edelsbrunner and R. Seidel. \emph{Voronoi Diagrams and arrangements.} Discrete \& Computational Geometry 1, 1986, 25-44.
+
+\bibitem{aureimai} F. Autenhammer and H. Imai. \emph{Geometric relaions among Voronoi diagrams.} Geometriae Dedicata 27, 1988, 65-75.
+
+\bibitem{alfortune} Dr. Eduardo A. Rodríguez Tello. CINVESTAV-Tamaulipas. 15 de marzo del 2013.
+\url{http://www.tamps.cinvestav.mx/~ertello/gc/sesion16.pdf}
+
+\bibitem {edelshah} H. Edelsbrunner and N.R. Shah. \emph{Incremental topological flipping works for regular triangulations}. Algorithmica, 1996.
+
+\bibitem{voronoi} The Voronoi Web Site , última modificación en Junio de 2008. \url{http://www.voronoi.com}
+
+\bibitem{circulos} François Anton, Darka Mioc, and Christopher Gold. \emph{The Voronoi diagram of circles and its application to the visualization of the growth of particles}, 2009. \url{http://www2.imm.dtu.dk/projects/graph/material/Anton_etal_2009.pdf}
+\end{thebibliography}
+
+
+
+%\bibliographystyle{miunsrturl}
+
+
+
+%\thispagestyle{empty}
+
+\end{document}
